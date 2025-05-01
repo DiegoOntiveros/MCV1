@@ -6,143 +6,112 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Views extends JFrame {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	public static final Color COLOR_BASE = Color.decode("#bde0fe");
+
+    private static final long serialVersionUID = 1L;
+    public static final Color COLOR_BASE = Color.decode("#a2d2ff");
 
     public Views() {
-        // Configuración de la ventana
-        this.setTitle("Registro de datos para el INE");
-        this.setSize(650, 800);
+        // Configuración de la ventana principal (Inicio de sesión)
+        this.setTitle("Inicio de sesión");
+        this.setSize(500, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(true);
-        this.setLocationRelativeTo(null);
         this.setLayout(null);
         this.getContentPane().setBackground(COLOR_BASE);
+        this.setLocationRelativeTo(null);
 
-        // Configuración de componentes
-        configurarLabels();
-        configurarCamposTexto();
-        configurarOpcionesGenero();
-        configurarBotones();
-    }
+        // Componentes de inicio de sesión
+        JLabel textobase = new JLabel("Inicio de sesión:", SwingConstants.CENTER);
+        textobase.setBounds(100, 30, 300, 50);
+        textobase.setFont(new Font("Arial black", Font.BOLD, 24));
+        textobase.setBackground(Color.decode("#ffc8dd"));
+        textobase.setOpaque(true);
+        textobase.setForeground(Color.black);
+        this.add(textobase);
 
-    private void configurarLabels() {
-        JLabel textoBase = new JLabel("Registro de datos", SwingConstants.CENTER);
-        textoBase.setBounds(20, 15, 320, 50);
-        textoBase.setFont(new Font("Arial Black", Font.BOLD, 24));
-        textoBase.setOpaque(true);
-        textoBase.setBackground(Color.WHITE);
-        textoBase.setForeground(Color.BLACK);
-        this.add(textoBase);
+        JLabel Nombre = new JLabel("Ingrese su nombre completo:");
+        Nombre.setBounds(100, 100, 300, 30);
+        Nombre.setFont(new Font("Arial black", Font.BOLD, 16));
+        Nombre.setForeground(Color.black);
+        this.add(Nombre);
 
-        JLabel nombreLabel = new JLabel("Ingrese su nombre completo:", SwingConstants.CENTER);
-        nombreLabel.setBounds(10, 80, 350, 50);
-        nombreLabel.setFont(new Font("Arial Black", Font.BOLD, 20));
-        nombreLabel.setOpaque(true);
-        nombreLabel.setBackground(COLOR_BASE);
-        nombreLabel.setForeground(Color.BLACK);
-        this.add(nombreLabel);
+        JTextField barra_nombre = new JTextField();
+        barra_nombre.setBounds(100, 140, 300, 30);
+        this.add(barra_nombre);
 
-        JLabel passwordLabel = new JLabel("Ingrese su contraseña:", SwingConstants.CENTER);
-        passwordLabel.setBounds(10, 180, 280, 50);
-        passwordLabel.setFont(new Font("Arial Black", Font.BOLD, 20));
-        passwordLabel.setOpaque(true);
-        passwordLabel.setBackground(COLOR_BASE);
-        passwordLabel.setForeground(Color.BLACK);
-        this.add(passwordLabel);
+        JLabel Password = new JLabel("Ingrese su contraseña:");
+        Password.setBounds(100, 200, 300, 30);
+        Password.setFont(new Font("Arial black", Font.BOLD, 16));
+        Password.setForeground(Color.black);
+        this.add(Password);
 
-        JLabel ciudadLabel = new JLabel("Escoja su ciudad:", SwingConstants.CENTER);
-        ciudadLabel.setBounds(15, 300, 220, 50);
-        ciudadLabel.setFont(new Font("Arial Black", Font.BOLD, 20));
-        ciudadLabel.setOpaque(true);
-        ciudadLabel.setBackground(COLOR_BASE);
-        ciudadLabel.setForeground(Color.BLACK);
-        this.add(ciudadLabel);
+        JPasswordField barra_password = new JPasswordField();
+        barra_password.setBounds(100, 240, 300, 30);
+        this.add(barra_password);
 
-        JLabel generoLabel = new JLabel("Escoja su género:", SwingConstants.CENTER);
-        generoLabel.setBounds(10, 380, 250, 50);
-        generoLabel.setFont(new Font("Arial Black", Font.BOLD, 20));
-        generoLabel.setOpaque(true);
-        generoLabel.setBackground(COLOR_BASE);
-        generoLabel.setForeground(Color.BLACK);
-        this.add(generoLabel);
-    }
+        JButton boton_login = new JButton("Iniciar sesión");
+        boton_login.setBounds(100, 300, 150, 40);
+        boton_login.setBackground(Color.decode("#ffd60a"));
+        boton_login.setFont(new Font("Arial black", Font.BOLD, 14));
+        this.add(boton_login);
 
-    private void configurarCamposTexto() {
-        JTextField barraNombre = new JTextField();
-        barraNombre.setBounds(20, 130, 250, 30);
-        this.add(barraNombre);
+        JButton boton_registro = new JButton("Registrarse");
+        boton_registro.setBounds(260, 300, 150, 40);
+        boton_registro.setBackground(Color.WHITE);
+        boton_registro.setFont(new Font("Arial black", Font.BOLD, 14));
+        this.add(boton_registro);
 
-        JPasswordField barraPassword = new JPasswordField();
-        barraPassword.setBounds(20, 240, 250, 30);
-        this.add(barraPassword);
+        // Acción para el botón de inicio de sesión
+        
+           
 
-        String[] ciudades = {"Cabo San Lucas", "La Paz", "San José", "Ciudad Constitución"};
-        JComboBox<String> listaCiudades = new JComboBox<>(ciudades);
-        listaCiudades.setBounds(20, 360, 150, 30);
-        this.add(listaCiudades);
-    }
-
-    private void configurarOpcionesGenero() {
-        JRadioButton hombre = new JRadioButton("Hombre");
-        hombre.setBounds(20, 450, 100, 30);
-        hombre.setBackground(COLOR_BASE);
-
-        JRadioButton mujer = new JRadioButton("Mujer");
-        mujer.setBounds(20, 490, 100, 30);
-        mujer.setBackground(COLOR_BASE);
-
-        JRadioButton noDefinido = new JRadioButton("No definido");
-        noDefinido.setBounds(20, 530, 150, 30);
-        noDefinido.setBackground(COLOR_BASE);
-
-        ButtonGroup grupoGenero = new ButtonGroup();
-        grupoGenero.add(hombre);
-        grupoGenero.add(mujer);
-        grupoGenero.add(noDefinido);
-
-        this.add(hombre);
-        this.add(mujer);
-        this.add(noDefinido);
-    }
-
-    private void configurarBotones() {
-        JButton botonRegistro = new JButton("Registrarse");
-        botonRegistro.setBounds(50, 680, 150, 50);
-        botonRegistro.setBackground(Color.decode("#ffd60a"));
-        botonRegistro.setFont(new Font("Arial", Font.BOLD, 15));
-        botonRegistro.setOpaque(true);
-        botonRegistro.addActionListener(new ActionListener() {
+        // Acción para el botón de registro
+        boton_registro.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Registro completado.");
+                mostrarVentanaRegistro();
             }
         });
-        this.add(botonRegistro);
 
-        JButton botonInicioSesion = new JButton("Iniciar sesión");
-        botonInicioSesion.setBounds(250, 680, 150, 50);
-        botonInicioSesion.setBackground(Color.WHITE);
-        botonInicioSesion.setFont(new Font("Arial", Font.BOLD, 15));
-        botonInicioSesion.setOpaque(true);
-        botonInicioSesion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "Redirigiendo al inicio de sesión.");
-            }
-        });
-        this.add(botonInicioSesion);
+        this.setVisible(true);
+    }
+
+    // Método para mostrar la ventana de registro
+    public void mostrarVentanaRegistro() {
+        JFrame frameRegistro = new JFrame("Registro");
+        frameRegistro.setSize(500, 500);
+        frameRegistro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        frameRegistro.setLayout(null);
+        frameRegistro.getContentPane().setBackground(COLOR_BASE);
+        frameRegistro.setLocationRelativeTo(null);
+
+        JLabel label = new JLabel("Ventana de Registro", SwingConstants.CENTER);
+        label.setBounds(100, 50, 300, 50);
+        label.setFont(new Font("Arial black", Font.BOLD, 24));
+        label.setForeground(Color.black);
+        frameRegistro.add(label);
+        
+        JTextField nombreField = new JTextField();
+        nombreField.setBounds(150, 100, 200, 30);
+        frameRegistro.add(nombreField);
+
+        JPasswordField passwordField = new JPasswordField();
+        passwordField.setBounds(150, 150, 200, 30);
+        frameRegistro.add(passwordField);
+        
+        JButton enviarButton = new JButton("Enviar");
+        enviarButton.setBounds(150, 200, 100, 30);
+        frameRegistro.add(enviarButton);
+
+        // Botón de cancelar
+        JButton cancelarButton = new JButton("Cancelar");
+        cancelarButton.setBounds(260, 200, 100, 30);
+        cancelarButton.addActionListener(e -> frameRegistro.dispose());
+        frameRegistro.add(cancelarButton);
+
+        frameRegistro.setVisible(true);
     }
 
     public static void main(String[] args) {
-        new Views().setVisible(true);
+        new Views();
     }
-
-	public void login() {
-		// TODO Auto-generated method stub
-		
-	}
 }
