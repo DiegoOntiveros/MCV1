@@ -69,6 +69,10 @@ public class Views extends JFrame {
             String password = new String(barra_password.getPassword());
             if(model.sesion(email, password)) {
                 JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso");
+                Panel panel = new Panel();
+                panel.show();
+                dispose();
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -83,7 +87,7 @@ public class Views extends JFrame {
         add(boton_registro);
     }
 
-    private void mostrarVentanaRegistro() {
+    public void mostrarVentanaRegistro() {
         JDialog dialog = new JDialog(this, "Registro", true);
         dialog.setSize(400, 350);
         dialog.setLayout(null);
